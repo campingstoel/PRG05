@@ -18,12 +18,17 @@ return new class extends Migration
             $table->increments('id');
             $table ->string('name');
             $table ->string('email')->unique();
+            $table -> enum('role', ['writer', 'admin'])-> default('writer');
             $table ->string('password');
+            $table -> timestamp('email-verified-at')->nullable();
             $table->timestamps();
+
         });
 
         Schema::create('products', function (Blueprint $table) {
             $table->increments('id');
+            $table->text('name');
+            $table->text('image');
             $table ->unsignedInteger('account_id');
             $table ->foreign('account_id') -> references('id') -> on('laravel.users') -> onDelete('cascade');
             $table->timestamps();
@@ -46,6 +51,5 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('products');
     }
 };

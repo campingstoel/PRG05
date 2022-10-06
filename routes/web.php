@@ -1,7 +1,9 @@
 <?php
 
+use App\Http\Controllers\ProductController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth; 
+
 
 /*
 |--------------------------------------------------------------------------
@@ -17,13 +19,21 @@ use Illuminate\Support\Facades\Auth;
 Route::get('/', function () {
     return view('auth/login');
 });
+
+Route::get('/products', [ProductController::class,'show']);
 Route::get('/login', function () {
     return view('auth/login');
 });
-Route::get('/admin/profile', function () {
-    return view('admin/profile');
-});
+Route::middleware(['auth', 'isAdmin'])->group(function () {
+    Route::get('/admin', function () {
+      return view('admin/profile');
+    })->name('dashboard');
+  });
+
+
 
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('/profile', [App\Http\Controllers\ProfileController::class, 'index'])->name('profile');
+

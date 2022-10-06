@@ -23,21 +23,29 @@
     <div id="app">
         <nav class="navbar navbar-expand-md navbar-light bg-black shadow-sm">
             <div class="container">
-                <a class="navbar-brand" href="{{ url('/') }}">
-                    {{ config('app.name', 'DumpIt') }}
+                <a class="navbar-brand" href="{{ url('/home') }}">
+                    {{ config('app.name', 'DumpIt.') }}
                 </a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
+                <div class="collapse navbar-collapse justify-content-between" id="navbarSupportedContent">
+                    <ul class="navbar-nav mr-auto">
+                    <a class="nav-link " id="tab-register" data-mdb-toggle="pill" href="{{ url('/products') }}" role="tab" aria-controls="pills-register" aria-selected="false">{{ __('Products') }}</a>
 
+                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                    @if (Auth::user() && Auth::user()->role == 'admin')
+                    <a class="nav-link " id="tab-register" href="{{ url('/admin') }}">Admin</a>
+                    @endif
+                    </ul>
+                </div>
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <!-- Left Side Of Navbar -->
                     <ul class="navbar-nav me-auto">
 
                     </ul>
-                    <a class="text-center" href="{{ url('/') }}">
-                    Keep the planet clean
-                </a>
+                    <a class="text-center" href="{{ url('/home') }}">
+                        Keeping the planet clean
+                    </a>
                     <!-- Right Side Of Navbar -->
                     <!-- Authentication Links -->
                     @guest
@@ -65,6 +73,7 @@
                         </a>
 
                         <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+                            <a class="dropdown-item" href="{{ url('/profile') }}">{{ __('Profile') }}</a>
                             <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
                                 {{ __('Logout') }}
