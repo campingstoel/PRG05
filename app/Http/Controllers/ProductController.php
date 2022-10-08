@@ -15,37 +15,81 @@ class ProductController extends Controller
      *
      * @return void
      */
-
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
 
     /**
      * Show the application dashboard.
      *
      * @return \Illuminate\Contracts\Support\Renderable
      */
-    public function show(Request $request)
+    public function show()
     {
         $products =  Products::all();
-        return view('products', ['assets'=> $products]);
-   
-        $data = DB::table('products');
-        if( $request->input('search')){
-            $data = $data->where('name', 'LIKE', "%" . $request->search . "%");
-        }
-        $data = $data->paginate(10);
-        return view('products', compact('data'));
+        return view('/products', ['assets' => $products]);
+
     }
    
-    public function store()
+    public function store(Request $request)
     {
+        $validated = $request->validate([
+            'name' => 'required|min:5|max:30',
+            'description' => 'required|min:5|max:300',
+            'price' => 'required|numeric',
+            'Category' => 'required|in:Jackets,Shoes,Suits,Hats',
+            'image' => 'required|image|mimes:jpg,png,jpeg,gif,svg|max:2048',
+
+        ]);
+
+        $products =  Products::all();
+
         $product = new Products();
         
-        $product->name = request('name');
+        $product->name = $validated['name'];
         $product->account_id = request('account_id');
-        $product->category = request('Category');
-        $product->price = request('price');
-        $product->image = request()->file('image')->store('public/images');
+        $product->description = $validated['description'];
+        $product->category = $validated['Category'];
+        $product->price = $validated['price'];
+        $product->image = $validated['image']->store('public/images');
         $product->save();
-        return view('products');
+        return view('/products', ['assets' => $products]);
+    }
+
+    public function details($id){
+        $details= Products::find($id);
+        return view ('productdetails', ['details'=> $details]);
+
+    }
+    public function edit($id){
+        $productfield= Products::find($id);
+        return view ('edit', ['data'=> $productfield]);
+
+    }
+    public function editstore(Request $request){
+        $products =  Products::all();
+
+        $validated = $request->validate([
+            'name' => 'required|min:5|max:30',
+            'description' => 'required|min:5|max:300',
+            'price' => 'required|numeric',
+            'Category' => 'required|in:Jackets,Shoes,Suits,Hats',
+            'image' => 'required|image|mimes:jpg,png,jpeg,gif,svg|max:2048',
+
+        ]);
+
+        Products::where('id', request('id'))
+       ->update([
+           'name' => $validated['name'],
+           'description' => $validated['description'],
+           'price' => $validated['price'],
+           'category' => $validated['Category'],
+           'image' => $validated['image']->store('public/images'),
+        ]);
+        
+        return view('/products', ['assets' => $products]);
+
     }
  
 }

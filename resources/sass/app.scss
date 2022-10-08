@@ -4,6 +4,12 @@
         @import 'variables';
         // Bootstrap
         @import 'bootstrap/scss/bootstrap';
+        a,
+        a:hover,
+        a:visited {
+            text-decoration: none;
+        }
+        
         *,
         *:before,
         *:after {
@@ -270,11 +276,17 @@
             cursor: pointer;
         }
         
+        .product-details-text,
+        .product-details-text:hover,
+        .product-details-text:visited {
+            color: white;
+        }
+        
         .product-list {
             margin-left: 25px;
             margin-right: 25px;
             display: grid;
-            grid-template-columns: 1fr 1fr 1fr;
+            grid-template-columns: 0.75fr 0.75fr 0.75fr 0.25fr;
             grid-auto-flow: rows;
             grid-row-gap: 24px;
         }
@@ -282,7 +294,6 @@
         .bottom-right {
             display: inline-flex;
             align-items: center;
-            text-decoration: none;
             height: 80px;
             border-radius: 70%;
             width: 80px;
@@ -292,4 +303,16 @@
             position: fixed;
             bottom: 20px;
             right: 20px;
+        }
+        
+        .bottom-right:hover {
+            transition-duration: 400ms;
+            background-color: #bda117;
+        }
+        
+        .bottom-right-text,
+        .bottom-right-text:hover,
+        .bottom-right-text:visited {
+            text-decoration: none;
+            color: black;
         }

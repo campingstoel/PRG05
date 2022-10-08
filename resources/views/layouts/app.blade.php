@@ -26,10 +26,11 @@
                 <a class="navbar-brand" href="{{ url('/home') }}">
                     {{ config('app.name', 'DumpIt.') }}
                 </a>
+                @if (Auth::user())
                 <div class="collapse navbar-collapse justify-content-between" id="navbarSupportedContent">
                     <ul class="navbar-nav mr-auto">
                     <a class="nav-link " id="tab-register" data-mdb-toggle="pill" href="{{ url('/products') }}" role="tab" aria-controls="pills-register" aria-selected="false">{{ __('Products') }}</a>
-
+@endif
                     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
                         <span class="navbar-toggler-icon"></span>
                     </button>

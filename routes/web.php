@@ -22,7 +22,7 @@ Route::get('/', function () {
     return view('auth/login');
 });
 
-Route::get('/products', [ProductController::class,'show'])->name('search');
+Route::get('/products', [ProductController::class,'show'])->name('products');
 Route::post('create', [ProductController::class,'store']);
 
 Route::get('/login', function () {
@@ -47,4 +47,15 @@ Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 Route::get('/profile', [App\Http\Controllers\ProfileController::class, 'index'])->name('profile');
+Route::middleware(['auth'])->group(function () {
+Route::get('/products/{id}', [ProductController::class,'details'])->name('details');
+});
+Route::middleware(['auth'])->group(function () {
+Route::get('/edit/{id}', [ProductController::class,'edit'])->name('edit');
+});
+Route::post('editconfirm', [ProductController::class,'editstore']);
+
+
+
+
 
