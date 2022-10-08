@@ -1,8 +1,10 @@
 <?php
 
 use App\Http\Controllers\ProductController;
+use App\Http\Controllers\SearchController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth; 
+
 
 
 /*
@@ -20,15 +22,24 @@ Route::get('/', function () {
     return view('auth/login');
 });
 
-Route::get('/products', [ProductController::class,'show']);
+Route::get('/products', [ProductController::class,'show'])->name('search');
+Route::post('create', [ProductController::class,'store']);
+
 Route::get('/login', function () {
     return view('auth/login');
 });
+
+Route::get('/upload-product', function () {
+  return view('create');
+});
+
 Route::middleware(['auth', 'isAdmin'])->group(function () {
     Route::get('/admin', function () {
       return view('admin/profile');
     })->name('dashboard');
   });
+
+
 
 
 

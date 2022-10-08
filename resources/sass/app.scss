@@ -223,3 +223,73 @@
         .nav-link {
             display: inline-block;
         }
+        
+        .product-container {
+            width: 280px;
+            max-height: 500px;
+            background: white;
+            border-radius: 2em;
+            box-sizing: border-box;
+            padding: 2em;
+            display: flex;
+            flex-direction: column;
+            border-style: solid;
+        }
+        
+        .product-title {
+            text-align: center;
+            padding-bottom: 0;
+            font-family: 'Roboto', sans-serif;
+            margin-bottom: 0;
+            color: black;
+        }
+        
+        .product-image {
+            width: 100%;
+            box-sizing: border-box;
+            display: flex;
+            border-radius: 2em;
+            flex-direction: column;
+        }
+        
+        .product-price {
+            display: inline-block;
+            text-align: left;
+            padding: 1em 0;
+            margin: 0;
+            font-size: 1em;
+            color: black;
+        }
+        
+        .product-details {
+            background-color: black;
+            color: white;
+            border-radius: 25px;
+            text-align: center;
+            border: none;
+            cursor: pointer;
+        }
+        
+        .product-list {
+            margin-left: 25px;
+            margin-right: 25px;
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            grid-auto-flow: rows;
+            grid-row-gap: 24px;
+        }
+        
+        .bottom-right {
+            display: inline-flex;
+            align-items: center;
+            text-decoration: none;
+            height: 80px;
+            border-radius: 70%;
+            width: 80px;
+            font-size: 40px;
+            text-align: center;
+            justify-content: center;
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+        }
