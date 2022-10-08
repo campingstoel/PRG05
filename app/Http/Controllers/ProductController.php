@@ -4,9 +4,10 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\User;
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use App\Models\Products;
+use Illuminate\Support\Facades\Auth; 
+
 
 class ProductController extends Controller
 {
@@ -54,7 +55,7 @@ class ProductController extends Controller
         $product->price = $validated['price'];
         $product->image = $validated['image']->store('public/images');
         $product->save();
-        return view('/products', ['assets' => $products]);
+        return redirect()->route('products', ['assets' => $products]);
     }
 
     public function details($id){
@@ -62,10 +63,15 @@ class ProductController extends Controller
         return view ('productdetails', ['details'=> $details]);
 
     }
+
     public function edit($id){
         $productfield= Products::find($id);
+        if (Auth::user()->id !== $productfield['account_id']){
+            return redirect('/products');
+          } else {
+          
         return view ('edit', ['data'=> $productfield]);
-
+          }
     }
     public function editstore(Request $request){
         $products =  Products::all();
@@ -88,7 +94,7 @@ class ProductController extends Controller
            'image' => $validated['image']->store('public/images'),
         ]);
         
-        return view('/products', ['assets' => $products]);
+        return redirect()->route('products', ['assets' => $products]);
 
     }
  
