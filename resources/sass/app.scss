@@ -231,6 +231,7 @@
         }
         
         .product-container {
+            margin-top: 100px;
             width: 280px;
             max-height: 500px;
             background: white;
@@ -240,6 +241,7 @@
             display: flex;
             flex-direction: column;
             border-style: solid;
+            z-index: 1;
         }
         
         .product-title {
@@ -311,7 +313,8 @@
             grid-template-columns: 0.75fr 0.75fr 0.75fr;
             position: fixed;
             top: 95px;
-            left: 20px;
+            left: 50%;
+            transform: translate(-50%, -50%);
         }
         
         .filter {

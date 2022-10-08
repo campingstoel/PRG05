@@ -63,7 +63,7 @@ class ProductController extends Controller
             $name = $request->get('name');
             $category = $request->get('Category');
 
-            if ($category != "") {
+            if ($category != "Category") {
                 $data =  Products::where([
                     ['name', 'LIKE', '%' . $name . '%'],
                     ['category', '=', $category],['description', 'LIKE', '%' . $name . '%']

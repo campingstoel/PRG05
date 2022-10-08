@@ -2,11 +2,14 @@
 
 
 @section('content')
+<div class="container">
+<div class="background">
+</div>
 <form  class="top-left" action="{{url('/search')}}" method="get">
     {{csrf_field()}}
     <input type="text" placeholder="Search" class="input" name="name"/>
     <select name="Category" class="input" id="category">
-    <option ></option>
+    <option value="Category">Category</option>
                 <option value="Jackets">Jackets</option>
                 <option value="Suits">Suits</option>
                 <option value="Shoes">Shoes</option>
@@ -17,8 +20,6 @@
 
 </form>
     
-
-
 <div class="product-list">
     @foreach($assets as $product)
     <div class="product-container">

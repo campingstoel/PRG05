@@ -1,1 +1,4 @@
-POSTS
+@extends('layouts.app')
+
+
+@section('content')
