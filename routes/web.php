@@ -24,6 +24,8 @@ Route::get('/', function () {
 
 Route::get('/products', [ProductController::class,'show'])->name('products');
 Route::post('create', [ProductController::class,'store']);
+Route::get('/search', [ProductController::class,'search']);
+
 
 Route::get('/login', function () {
     return view('auth/login');

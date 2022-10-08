@@ -4,7 +4,7 @@
 <div class="container">
 <div class="background">
 </div>
-<form method="POST" action="{{ route('register') }}">
+<form method="POST" class="form" action="{{ route('register') }}">
     @csrf
     <div class="form-title">
     <h3>DumpIt.</h3>

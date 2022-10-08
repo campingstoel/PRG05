@@ -11,7 +11,7 @@
 <div class="background">
 </div>
 
-<form method="POST" action="{{ route('login') }}">
+<form method="POST" class="form" action="{{ route('login') }}">
     @csrf
     <div class="form-title">
     <h3>DumpIt.</h3>

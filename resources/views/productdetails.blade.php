@@ -3,24 +3,24 @@
 
 @section('content')
 <main class="" id="main">
-            <div class="container">
+    <div class="container">
         <h1 class="text-white">{{$details->name}}</h1>
         <div class="row row-cols-1 row-cols-md-2 g-3">
             <div class="col">
                 <p>{{$details->description}}</p>
                 <div class="row">
-                                            <div class="col col-auto">
-                            <a href="" class="btn btn-primary text-white">{{$details->category}}</a>
-                        </div>
-                                    </div>
+                    <div class="col col-auto">
+                        <a href="http://dump.it/search?_token=W43lk472K9XR5CfbrGr9pmJ4MJCQFMK36RRY3nFQ&name=&Category={{$details->category}}" class="btn btn-primary text-white">{{$details->category}}</a>
+                    </div>
+                </div>
             </div>
             <div class="col">
-                <img class="card-img-top" src="{{ Storage::url($details->image)  }}" alt="{{$details->name}}"/>
+                <img class="card-img-top" src="{{ Storage::url($details->image)  }}" alt="{{$details->name}}" />
             </div>
         </div>
     </div>
     @if (Auth::user() && Auth::id()==$details->account_id)
-                    <button class="bottom-right"><a class="bottom-right-text" href="/edit/{{$details['id']}}">✎</a></button>
-                    @endif
-    </main>
-    @endsection
+    <button class="bottom-right"><a class="bottom-right-text" href="/edit/{{$details['id']}}">✎</a></button>
+    @endif
+</main>
+@endsection

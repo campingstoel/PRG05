@@ -18,7 +18,7 @@
         <label for="description" class="col-sm-3 col-form-label">Description</label>
         <div class="col-sm-9">
     
-            <input name="description" type="text" class="form-control" id="publisherid" placeholder="description" required>
+            <input name="description" type="text" class="form-control" id="publisherid" placeholder="Description" required>
             @error('name')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>

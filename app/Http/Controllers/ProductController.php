@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 use App\User;
 use Illuminate\Support\Facades\DB;
 use App\Models\Products;
-use Illuminate\Support\Facades\Auth; 
+use Illuminate\Support\Facades\Auth;
 
 
 class ProductController extends Controller
@@ -30,9 +30,8 @@ class ProductController extends Controller
     {
         $products =  Products::all();
         return view('/products', ['assets' => $products]);
-
     }
-   
+
     public function store(Request $request)
     {
         $validated = $request->validate([
@@ -47,7 +46,7 @@ class ProductController extends Controller
         $products =  Products::all();
 
         $product = new Products();
-        
+
         $product->name = $validated['name'];
         $product->account_id = request('account_id');
         $product->description = $validated['description'];
@@ -57,23 +56,46 @@ class ProductController extends Controller
         $product->save();
         return redirect()->route('products', ['assets' => $products]);
     }
+    public function search(Request $request)
+    {
 
-    public function details($id){
-        $details= Products::find($id);
-        return view ('productdetails', ['details'=> $details]);
+        if ($request->isMethod('get')) {
+            $name = $request->get('name');
+            $category = $request->get('Category');
 
+            if ($category != "") {
+                $data =  Products::where([
+                    ['name', 'LIKE', '%' . $name . '%'],
+                    ['category', '=', $category],['description', 'LIKE', '%' . $name . '%']
+                ])->paginate(5);
+            } else {
+                $data = Products::where([
+                    ['name', 'LIKE', '%' . $name . '%'],['description', 'LIKE', '%' . $name . '%']
+                ])->paginate(5);
+            }
+
+            return view('products', ['assets' => $data]);
+        }
     }
 
-    public function edit($id){
-        $productfield= Products::find($id);
-        if (Auth::user()->id !== $productfield['account_id']){
+    public function details($id)
+    {
+        $details = Products::find($id);
+        return view('productdetails', ['details' => $details]);
+    }
+
+    public function edit($id)
+    {
+        $productfield = Products::find($id);
+        if (Auth::user()->id !== $productfield['account_id']) {
             return redirect('/products');
-          } else {
-          
-        return view ('edit', ['data'=> $productfield]);
-          }
+        } else {
+
+            return view('edit', ['data' => $productfield]);
+        }
     }
-    public function editstore(Request $request){
+    public function editstore(Request $request)
+    {
         $products =  Products::all();
 
         $validated = $request->validate([
@@ -86,16 +108,14 @@ class ProductController extends Controller
         ]);
 
         Products::where('id', request('id'))
-       ->update([
-           'name' => $validated['name'],
-           'description' => $validated['description'],
-           'price' => $validated['price'],
-           'category' => $validated['Category'],
-           'image' => $validated['image']->store('public/images'),
-        ]);
-        
-        return redirect()->route('products', ['assets' => $products]);
+            ->update([
+                'name' => $validated['name'],
+                'description' => $validated['description'],
+                'price' => $validated['price'],
+                'category' => $validated['Category'],
+                'image' => $validated['image']->store('public/images'),
+            ]);
 
+        return redirect()->route('products', ['assets' => $products]);
     }
- 
 }

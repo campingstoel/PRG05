@@ -26,7 +26,7 @@
         </div>
         <div class="form-group row">
             <label for="Category" class="col-sm-3 col-form-label" required>Category</label>
-            <select name="Category" class="form-control"  id="category">
+            <select name="Category" class="form-control"  id="category" value="{{$data -> category}}">
                 <option value="Jackets">Jackets</option>
                 <option value="Suits">Suits</option>
                 <option value="Shoes">Shoes</option>
