@@ -41,7 +41,7 @@
     <label for="password-confirm">{{ __('Confirm Password') }}</label>
     <input id="password-confirm" placeholder="Confirm Password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="new-password">
     
-    <button>Register</button>
+    <button style="color:black">Register</button>
 
 
 </form>

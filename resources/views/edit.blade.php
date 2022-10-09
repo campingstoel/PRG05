@@ -1,7 +1,7 @@
 @extends('layouts.app')
 @section('content')
 
-<form method="post" action="/editconfirm" enctype="multipart/form-data">
+<form method="post" class="form" action="/editconfirm" enctype="multipart/form-data">
     {{ csrf_field() }}
     <div class="form-group row">
         <label for="titleid" class="col-sm-3 col-form-label">Product name</label>

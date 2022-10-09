@@ -35,7 +35,7 @@ class ProductController extends Controller
     public function store(Request $request)
     {
         $validated = $request->validate([
-            'name' => 'required|min:5|max:30',
+            'name' => 'required|min:5|max:20',
             'description' => 'required|min:5|max:300',
             'price' => 'required|numeric',
             'Category' => 'required|in:Jackets,Shoes,Suits,Hats',
@@ -99,7 +99,7 @@ class ProductController extends Controller
         $products =  Products::all();
 
         $validated = $request->validate([
-            'name' => 'required|min:5|max:30',
+            'name' => 'required|min:5|max:20',
             'description' => 'required|min:5|max:300',
             'price' => 'required|numeric',
             'Category' => 'required|in:Jackets,Shoes,Suits,Hats',
