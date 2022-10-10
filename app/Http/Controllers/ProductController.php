@@ -67,14 +67,17 @@ class ProductController extends Controller
             $category = $request->get('Category');
 
             if ($category != "Category") {
-                $data =  Products::where([
+                $data =  Products::select("*")
+                ->where([
                     ['name', 'LIKE', '%' . $name . '%'],['status', '=', 1],
-                    ['category', '=', $category], ['description', 'LIKE', '%' . $name . '%']
-                ])->paginate(5);
+                    ['category', '=', $category]
+                ])->orWhere([['description', 'LIKE', '%' . $name . '%'],['status', '=', 1],['category', '=', $category]])->paginate(5);
+             
             } else {
-                $data = Products::where([
-                    ['status', '=', 1],['name', 'LIKE', '%' . $name . '%'], ['description', 'LIKE', '%' . $name . '%']
-                ])->paginate(5);
+                $data =  Products::select("*")
+                ->where([
+                    ['name', 'LIKE', '%' . $name . '%'],['status', '=', 1]
+                ])->orWhere([['description', 'LIKE', '%' . $name . '%'],['status', '=', 1]])->paginate(5);
             }
 
             return view('products', ['assets' => $data]);

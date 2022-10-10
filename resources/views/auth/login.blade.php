@@ -8,14 +8,13 @@
 
 <body>
 <div class="container">
-<div class="background">
-</div>
+
 
 <form method="POST" class="form" action="{{ route('login') }}">
     @csrf
     <div class="form-title">
     <h3>DumpIt.</h3>
-    <img src="https://i0.wp.com/zeevector.com/wp-content/uploads/White-Recycle-Symbol@zeevector.com_.png?fit=595%2C585&ssl=1" height="30px" >
+    <img src="https://www.recycling.com/wp-content/uploads/recycling%20symbols/black/Black%20Recycling%20Symbol%20%28U%2B267B%29.png" height="30px" >
     </div>
     <label for="email">{{ __('Email Address') }}</label>
     <input id="email" placeholder="Email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" autofocus>
@@ -42,7 +41,7 @@
         </label>
     </div>
     
-    <button style="color:black">Log In</button>
+    <button style="color:white">Log In</button>
     @if (Route::has('password.request'))
     <a class="btn btn-link" href="{{ route('password.request') }}">
         {{ __('Forgot Your Password?') }}
