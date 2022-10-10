@@ -36,8 +36,9 @@ Route::get('/upload-product', function () {
 });
 
 Route::middleware(['auth', 'isAdmin'])->group(function () {
-    Route::get('/admin', function () {
-      return view('admin/profile');
+  Route::post('/changeStatus', [ProductController::class, 'changeStatus'])->name('changeStatus');
+    Route::get('/admin',[App\Http\Controllers\ProductController::class, 'admin'], function () {
+      
     })->name('dashboard');
   });
 

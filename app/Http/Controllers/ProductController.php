@@ -7,6 +7,9 @@ use App\User;
 use Illuminate\Support\Facades\DB;
 use App\Models\Products;
 use Illuminate\Support\Facades\Auth;
+use App\Enums\ProductStatusEnum;
+
+
 
 
 class ProductController extends Controller
@@ -28,7 +31,7 @@ class ProductController extends Controller
      */
     public function show()
     {
-        $products =  Products::all();
+        $products =  Products::where('status', '=', 1)->get();
         return view('/products', ['assets' => $products]);
     }
 
@@ -43,7 +46,7 @@ class ProductController extends Controller
 
         ]);
 
-        $products =  Products::all();
+        $products =  Products::where('status', 'active');
 
         $product = new Products();
 
@@ -65,12 +68,12 @@ class ProductController extends Controller
 
             if ($category != "Category") {
                 $data =  Products::where([
-                    ['name', 'LIKE', '%' . $name . '%'],
-                    ['category', '=', $category],['description', 'LIKE', '%' . $name . '%']
+                    ['name', 'LIKE', '%' . $name . '%'],['status', '=', 1],
+                    ['category', '=', $category], ['description', 'LIKE', '%' . $name . '%']
                 ])->paginate(5);
             } else {
                 $data = Products::where([
-                    ['name', 'LIKE', '%' . $name . '%'],['description', 'LIKE', '%' . $name . '%']
+                    ['status', '=', 1],['name', 'LIKE', '%' . $name . '%'], ['description', 'LIKE', '%' . $name . '%']
                 ])->paginate(5);
             }
 
@@ -117,5 +120,24 @@ class ProductController extends Controller
             ]);
 
         return redirect()->route('products', ['assets' => $products]);
+    }
+
+    public function admin()
+    {
+        $products =  Products::all();
+        return view('admin/profile', ['assets' => $products]);
+    }
+
+    public function changeStatus(Request $request)
+    {
+        $body = json_decode($request->getContent(), true);
+        $product_id = $body["product_id"];
+        $status = $body["status"];
+        $product = Products::where('id', $product_id)->first();
+
+        $product->status = $status;
+        $product->save();
+
+        return response()->json(['success' => 'Status change successfully.']);
     }
 }

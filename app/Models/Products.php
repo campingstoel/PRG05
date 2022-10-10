@@ -10,5 +10,10 @@ class Products extends Model{
 
     protected $table = 'products';
     protected $primaryKey = 'id';
+    protected $fillable = [
+        'name', 'body', 'status'
+    ];
    public $timestamps = true;
+  
+  
 }

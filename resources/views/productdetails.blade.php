@@ -10,7 +10,7 @@
                 <p>{{$details->description}}</p>
                 <div class="row">
                     <div class="col col-auto">
-                        <a href="http://dump.it/search?_token=W43lk472K9XR5CfbrGr9pmJ4MJCQFMK36RRY3nFQ&name=&Category={{$details->category}}" class="btn btn-primary text-white">{{$details->category}}</a>
+                        <a href="https://dump.it/search?_token=HDwY5UEi8EFLhRf88Uo6WrOrHozt2lkUMkVEDC03&name=&Category={{$details->category}}" class="btn btn-primary text-white">{{$details->category}}</a>
                     </div>
                 </div>
             </div>
