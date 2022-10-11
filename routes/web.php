@@ -54,7 +54,7 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 
 Route::middleware(['auth'])->group(function () {
   Route::get('/profile', [App\Http\Controllers\ProfileController::class, 'index'])->name('profile');
-  Route::put('/update', [App\Http\Controllers\ProfileController::class, 'update'])->name('update');
+  Route::post('/update', [App\Http\Controllers\ProfileController::class, 'update'])->name('update');
 Route::get('/products/{id}', [ProductController::class,'details'])->name('details');
 });
 Route::middleware(['auth'])->group(function () {

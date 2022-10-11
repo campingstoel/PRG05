@@ -14,7 +14,6 @@
 					</div>
 					<div class="about">
 						<h5 class="mb-2 text-primary">About</h5>
-						<p>I'm Yuki. Full Stack Designer I enjoy creating user-centric, delightful and human experiences.</p>
 					</div>
 				</div>
 			</div>
@@ -24,8 +23,7 @@
 		<div class="card h-100">
 			<div class="card-body">
                 <form method="POST" action="/update">
-                @csrf
-                @method('PUT')
+				{{ csrf_field() }}
 				<div class="row gutters">
 					<div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
 						<h6 class="mb-3 text-primary">Personal Details</h6>
@@ -53,12 +51,20 @@
 							<input type="password" class="form-control" name="new-password" id="phone" placeholder="New Password" required>
 						</div>
 					</div>
-					
+					@if ($errors->any())
+    <div class="alert alert-danger">
+        <ul>
+            @foreach ($errors->all() as $error)
+                <li>{{ $error }}</li>
+            @endforeach
+        </ul>
+    </div>
+@endif
 				</div>
 				<div class="row gutters">
 					<div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
 						<div class="text-right">
-							<input type="submit" id="submit" name="submit" class="btn btn-primary">Update</button>
+							<input type="submit" id="submit" name="submit" class="btn btn-primary" value="Update"></button>
 						</div>
 </form>
 					</div>

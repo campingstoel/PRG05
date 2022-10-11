@@ -37,9 +37,9 @@ public function update(Request $request)
 {
     $validated = $request->validate( [
         'name' => ['required', 'string', 'max:255'],
-        'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
-        'old-password' => ['required', 'string', 'min:8', 'confirmed'],
-        'new-password' => ['required', 'string', 'min:8', 'confirmed'],
+        'email' => ['required', 'string', 'email', 'max:255',],
+        'old-password' => ['required', 'string', 'min:8'],
+        'new-password' => ['required', 'string', 'min:8'],
     ]);
     if ( !Hash::check($validated['old-password'], Auth::user()->password) ) {
     }
@@ -52,6 +52,5 @@ public function update(Request $request)
 
         ]);}
     return redirect()->route('profile');
-
     }
 }
