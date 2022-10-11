@@ -26,7 +26,7 @@
     <div id="app">
         <nav class="navbar navbar-expand-md navbar-light bg-black shadow-sm">
             <div class="container">
-                <a class="navbar-brand" href="{{ url('/home') }}">
+                <a class="navbar-brand" href="{{ url('/products') }}">
                     {{ config('app.name', 'DumpIt.') }}
                 </a>
                 @if (Auth::user())
@@ -47,7 +47,7 @@
                     <ul class="navbar-nav me-auto">
 
                     </ul>
-                    <a class="text-center" href="{{ url('/home') }}">
+                    <a class="text-center" href="{{ url('/products') }}">
                         Keeping the planet clean
                     </a>
                     <!-- Right Side Of Navbar -->

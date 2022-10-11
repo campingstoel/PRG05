@@ -4,6 +4,8 @@
 <head>
    <meta charset="UTF-8">
    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+   <link rel="icon" type="image/x-icon" href="https://cdn.freebiesupply.com/logos/large/2x/recycling-2-logo-black-and-white.png">
+
    <meta name="viewport" content="width=device-width, initial-scale=1.0">
    <meta name="csrf-token" content="{{ csrf_token() }}" />
    <title>Admin</title>
@@ -16,10 +18,13 @@
    @extends('layouts.app')
 
    @section('content')
-   <table class="table table-bordered">
+   <div class="container">
+<div class="background">
+</div>
+   <table class="table">
 
       <thead>
-         <tr>
+         <tr class="table100-head">
             <th>ID</th>
             <th>Name</th>
             <th>Status</th>
@@ -41,7 +46,7 @@
         <div class="form-group">
         <input type="hidden" name="product_id" value="{{$product->id}}">
 
-            <input type="submit" class="btn btn-danger delete-user" value="Delete">
+            <input type="submit" class="btn btn-danger delete-user" onclick="return confirm('Are you sure?')" value="Delete">
         </div>
     </form>         
 </td>
@@ -51,6 +56,7 @@
       </tbody>
    </table>
    @endsection
+</div>
 </body>
 <script>
    const token = document.querySelector('meta[name="csrf-token"]').getAttribute('content');

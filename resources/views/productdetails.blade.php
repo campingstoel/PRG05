@@ -1,26 +1,42 @@
+
+<?php 
+$usertime = new Datetime($user->created_at);
+$now = new DateTime();
+?>
+<body style="background-color:black;">
+
 @extends('layouts.app')
+<link rel="stylesheet" type="text/css" href="{{ asset('app.scss') }}" >
 
 
-@section('content')
-<main class="" id="main">
-    <div class="container">
-        <h1 class="text-white">{{$details->name}}</h1>
-        <div class="row row-cols-1 row-cols-md-2 g-3">
-            <div class="col">
-                <p>{{$details->description}}</p>
-                <div class="row">
-                    <div class="col col-auto">
-                        <a href="https://dump.it/search?_token=HDwY5UEi8EFLhRf88Uo6WrOrHozt2lkUMkVEDC03&name=&Category={{$details->category}}" class="btn btn-primary text-white">{{$details->category}}</a>
-                    </div>
+
+
+    @section('content')
+
+<body>
+    <main class="maindetails" id="main">
+        <div class="container2">
+            <div class="imgBx">
+                <img src="{{ Storage::url($details->image)  }}" alt="{{$details->name}}" style="max-width:500px">
+            </div>
+            <div class="details">
+                <div class="content">
+                    <h2>{{$details->name}}<br>
+                        <span> <a href="https://dump.it/search?_token=HDwY5UEi8EFLhRf88Uo6WrOrHozt2lkUMkVEDC03&name=&Category={{$details->category}}">{{$details->category}}</a></span>
+
+                    </h2>
+                    <p>
+                        {{$details->description}}
+                    </p>
+
+                    <h3>{{$details -> price}}</h3>
+                    @if (Auth::user() && Auth::id()==$details->account_id && date_diff($usertime, $now)->days > 2)
+                    <button class="button"><a class="a" href="/edit/{{$details['id']}}">EDIT</a></button>
+                    @endif
+
                 </div>
             </div>
-            <div class="col">
-                <img class="card-img-top" src="{{ Storage::url($details->image)  }}" alt="{{$details->name}}" />
-            </div>
         </div>
-    </div>
-    @if (Auth::user() && Auth::id()==$details->account_id)
-    <button class="bottom-right"><a class="bottom-right-text" href="/edit/{{$details['id']}}">✎</a></button>
-    @endif
-</main>
+    </main>
 @endsection
+</body>

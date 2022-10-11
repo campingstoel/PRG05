@@ -3,12 +3,13 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\User;
 use Illuminate\Support\Facades\DB;
 use App\Models\Products;
 use Illuminate\Support\Facades\Auth;
 use App\Enums\ProductStatusEnum;
 use \Illuminate\Validation\Validator;
+use App\Models\User;
+
 
 
 
@@ -86,8 +87,9 @@ class ProductController extends Controller
 
     public function details($id)
     {
+        $user= DB::table('users')->where('id', Auth::id())->first();
         $details = Products::find($id);
-        return view('productdetails', ['details' => $details]);
+        return view('productdetails', ['details' => $details],['user' => $user]);
     }
 
     public function edit($id)

@@ -10,7 +10,7 @@
     @csrf
     <div class="form-title">
     <h3>DumpIt.</h3>
-    <img src="https://www.recycling.com/wp-content/uploads/recycling%20symbols/black/Black%20Recycling%20Symbol%20%28U%2B267B%29.png" height="32px" >
+    <img style="margin-bottom:14px;" src="https://www.recycling.com/wp-content/uploads/recycling%20symbols/black/Black%20Recycling%20Symbol%20%28U%2B267B%29.png" height="32px" >
 
     </div>
 
