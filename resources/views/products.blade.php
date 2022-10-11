@@ -2,19 +2,22 @@
 
 
 @section('content')
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" type="text/css" href="{{ asset('app.scss') }}" >
 
 <div class="container">
 <form  class="top-left" action="{{url('/search')}}" method="get">
     {{csrf_field()}}
-    <input type="text" placeholder="Search" class="input" name="name"/>
-    <select name="Category" class="input" id="category">
+    <input type="text" placeholder="Search" class="search-input" name="name"/>
+    <select name="Category" class="search-input" id="category">
     <option value="Category">Category</option>
                 <option value="Jackets">Jackets</option>
                 <option value="Suits">Suits</option>
                 <option value="Shoes">Shoes</option>
                 <option value="Hats">Hats</option>
             </select>
-    <input type="submit" class="submit" value="🔍"/>
+    <input type="image" src="https://cdn-icons-png.flaticon.com/512/49/49116.png" style="width: 30px; margin-left:10px; margin-top:15px;"/>
 
 </form>
 <div id="center">

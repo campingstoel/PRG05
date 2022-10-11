@@ -23,6 +23,21 @@
             text-decoration: none;
         }
         
+        .search-input {
+            display: block;
+            height: 50px;
+            width: 100%;
+            background-color: #f8fafc;
+            background-clip: padding-box;
+            border: 1px solid #000000;
+            appearance: none;
+            border-radius: 0.375rem;
+            padding: 0 10px;
+            margin-top: 8px;
+            font-size: 14px;
+            font-weight: 300;
+        }
+        
         .formtitle {
             font-size: 32px;
             font-weight: 500;
@@ -241,7 +256,7 @@
         
         .product-price {
             display: inline-block;
-            text-align: left;
+            text-align: center;
             padding: 1em 0;
             margin: 0;
             font-size: 1em;
@@ -292,7 +307,8 @@
             grid-template-columns: 0.75fr 0.75fr 0.75fr;
             position: absolute;
             margin-top: 60px;
-            left: 5%;
+            left: 4%;
+            grid-column-gap: 5px;
         }
         
         #center {
@@ -375,4 +391,41 @@
         .bottom-right-text:visited {
             text-decoration: none;
             color: rgb(255, 255, 255);
+        }
+        
+        .toggle-class.button {
+            -webkit-appearance: none;
+            appearance: none;
+            width: 60px;
+            height: 30px;
+            background-color: rgb(255, 0, 0);
+            border-radius: 25px;
+            transition: background .6s;
+            cursor: pointer;
+            position: relative;
+        }
+        /* Create the toggle */
+        
+        .toggle-class.button::after {
+            content: '';
+            width: 1.25rem;
+            height: 1.25rem;
+            border-radius: 50%;
+            background-color: #fff;
+            display: block;
+            position: absolute;
+            top: 50%;
+            left: 30%;
+            transform: translate(-50%, -50%);
+            transition: left .3s;
+        }
+        /* Change the background when it's checked */
+        
+        .toggle-class.button:checked {
+            background: green;
+        }
+        /* Change position on checked */
+        
+        .toggle-class.button:checked::after {
+            left: 70%;
         }

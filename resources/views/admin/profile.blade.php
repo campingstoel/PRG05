@@ -23,6 +23,7 @@
             <th>ID</th>
             <th>Name</th>
             <th>Status</th>
+            <th>Delete?</th>
          </tr>
       </thead>
       <tbody>
@@ -33,6 +34,18 @@
             <td>
                <input onchange="toggleStatus(this)" data-id="{{$product->id}}" class="toggle-class button" type="checkbox" data-onstyle="success" data-offstyle="danger" data-toggle="toggle" data-on="Active" data-off="InActive" {{ $product->status ? 'checked' : '' }}>
             </td>
+            <td>      
+            <form method="POST" action="/deleteItem">
+        {{ csrf_field() }}
+
+        <div class="form-group">
+        <input type="hidden" name="product_id" value="{{$product->id}}">
+
+            <input type="submit" class="btn btn-danger delete-user" value="Delete">
+        </div>
+    </form>         
+</td>
+
          </tr>
          @endforeach
       </tbody>
@@ -63,5 +76,6 @@
       })
    }
 </script>
+
 
 </html>

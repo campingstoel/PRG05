@@ -1,14 +1,17 @@
 @extends('layouts.app')
 
 @section('content')
+<link rel="stylesheet" type="text/css" href="{{ asset('app.scss') }}" >
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;600&display=swap" rel="stylesheet">
 <div class="container">
-<div class="background">
-</div>
+
 <form method="POST" class="form" action="{{ route('register') }}">
     @csrf
     <div class="form-title">
     <h3>DumpIt.</h3>
-    <img src="https://i0.wp.com/zeevector.com/wp-content/uploads/White-Recycle-Symbol@zeevector.com_.png?fit=595%2C585&ssl=1" height="30px" >
+    <img src="https://www.recycling.com/wp-content/uploads/recycling%20symbols/black/Black%20Recycling%20Symbol%20%28U%2B267B%29.png" height="32px" >
+
     </div>
 
                             <label for="name">{{ __('Name') }}</label>
@@ -41,7 +44,7 @@
     <label for="password-confirm">{{ __('Confirm Password') }}</label>
     <input id="password-confirm" placeholder="Confirm Password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="new-password">
     
-    <button style="color:black">Register</button>
+    <button style="color:white">Register</button>
 
 
 </form>

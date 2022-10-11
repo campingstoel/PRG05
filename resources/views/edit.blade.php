@@ -28,5 +28,14 @@
 
             <label for="image" class="col-sm-3 col-form-label">Image</label>
                         <input name="image" type="file" id="imageid" value="{{$data -> image}}" class="custom-file-input" required>
+                        @if ($errors->any())
+    <div class="alert alert-danger">
+        <ul>
+            @foreach ($errors->all() as $error)
+                <li>{{ $error }}</li>
+            @endforeach
+        </ul>
+    </div>
+@endif
             <button type="submit" style="color:white">Submit Product</button>
 </form>

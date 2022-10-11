@@ -4,7 +4,7 @@
 
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;600&display=swap" rel="stylesheet">
-
+<link rel="stylesheet" type="text/css" href="{{ asset('app.scss') }}" >
 
 <body>
 <div class="container">
@@ -14,7 +14,7 @@
     @csrf
     <div class="form-title">
     <h3>DumpIt.</h3>
-    <img src="https://www.recycling.com/wp-content/uploads/recycling%20symbols/black/Black%20Recycling%20Symbol%20%28U%2B267B%29.png" height="30px" >
+    <img src="https://www.recycling.com/wp-content/uploads/recycling%20symbols/black/Black%20Recycling%20Symbol%20%28U%2B267B%29.png" height="32px" >
     </div>
     <label for="email">{{ __('Email Address') }}</label>
     <input id="email" placeholder="Email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" autofocus>

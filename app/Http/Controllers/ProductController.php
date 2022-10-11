@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\DB;
 use App\Models\Products;
 use Illuminate\Support\Facades\Auth;
 use App\Enums\ProductStatusEnum;
+use \Illuminate\Validation\Validator;
 
 
 
@@ -65,7 +66,6 @@ class ProductController extends Controller
         if ($request->isMethod('get')) {
             $name = $request->get('name');
             $category = $request->get('Category');
-
             if ($category != "Category") {
                 $data =  Products::select("*")
                 ->where([
@@ -77,7 +77,7 @@ class ProductController extends Controller
                 $data =  Products::select("*")
                 ->where([
                     ['name', 'LIKE', '%' . $name . '%'],['status', '=', 1]
-                ])->orWhere([['description', 'LIKE', '%' . $name . '%'],['status', '=', 1]])->paginate(5);
+                ])->orWhere([['description', 'LIKE', '%' . $name . '%'],['status', '=', 1]])->paginate(12);
             }
 
             return view('products', ['assets' => $data]);
@@ -142,5 +142,13 @@ class ProductController extends Controller
         $product->save();
 
         return response()->json(['success' => 'Status change successfully.']);
+    }
+    public function deleteItem(Request $request)
+    {
+        $products =  Products::all();
+
+        $product_id = $request['product_id'];
+        $query = DB::delete("delete from products where id = ?", [$product_id]);
+        return view("admin/profile", ['assets' => $products]);
     }
 }
