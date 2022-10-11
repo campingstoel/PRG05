@@ -1,12 +1,21 @@
-
 <?php 
 $usertime = new Datetime($user->created_at);
 $now = new DateTime();
 ?>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DumpIt</title>
+    <link rel="stylesheet" type="text/css" href="{{ asset('app.scss') }}" >
+<link rel="icon" type="image/x-icon" href="https://cdn.freebiesupply.com/logos/large/2x/recycling-2-logo-black-and-white.png">
+</head>
 <body style="background-color:black;">
 
 @extends('layouts.app')
-<link rel="stylesheet" type="text/css" href="{{ asset('app.scss') }}" >
+
 
 
 
@@ -40,3 +49,4 @@ $now = new DateTime();
     </main>
 @endsection
 </body>
+</html>
