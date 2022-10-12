@@ -59,3 +59,4 @@
 
 
 @endsection
+@extends('layouts.footer')
