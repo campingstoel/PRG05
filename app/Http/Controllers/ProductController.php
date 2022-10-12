@@ -33,8 +33,10 @@ class ProductController extends Controller
      */
     public function show()
     {
+        $user= DB::table('users')->where('id', Auth::id())->first();
+
         $products =  Products::where('status', '=', 1)->get();
-        return view('/products', ['assets' => $products]);
+        return view('/products', ['assets' => $products],['user' => $user]);
     }
 
     public function store(Request $request)

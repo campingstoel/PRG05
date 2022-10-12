@@ -1,3 +1,8 @@
+<?php 
+$usertime = new Datetime($user->created_at);
+$now = new DateTime();
+?>
+
 @extends('layouts.app')
 
 
@@ -37,7 +42,7 @@
     </div>
     @endforeach
 </div>
-@if (Auth::user())
+@if (Auth::user() && date_diff($usertime, $now)->days > 2)
 <button class="bottom-right"><a class="bottom-right-text" href="{{ url('/upload-product') }}">+</a></button>
 @endif
 @endsection
