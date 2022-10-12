@@ -41,6 +41,8 @@ class ProductController extends Controller
 
     public function store(Request $request)
     {
+        $user= DB::table('users')->where('id', Auth::id())->first();
+
         $validated = $request->validate([
             'name' => 'required|min:5|max:20',
             'description' => 'required|min:5|max:300',
@@ -61,10 +63,11 @@ class ProductController extends Controller
         $product->price = $validated['price'];
         $product->image = $validated['image']->store('public/images');
         $product->save();
-        return redirect()->route('products', ['assets' => $products]);
+        return redirect()->route('products', ['assets' => $products],['user' => $user]);
     }
     public function search(Request $request)
     {
+        $user= DB::table('users')->where('id', Auth::id())->first();
 
         if ($request->isMethod('get')) {
             $name = $request->get('name');
@@ -83,7 +86,7 @@ class ProductController extends Controller
                 ])->orWhere([['description', 'LIKE', '%' . $name . '%'],['status', '=', 1]])->paginate(12);
             }
 
-            return view('products', ['assets' => $data]);
+            return view('products', ['assets' => $data],['user' => $user]);
         }
     }
 
